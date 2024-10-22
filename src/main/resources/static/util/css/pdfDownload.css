@@ -1,3 +1,11 @@
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
 .container {
     width: 210mm; /* A4 가로 */
     height: 297mm; /* A4 세로 */
@@ -7,6 +15,61 @@
     box-sizing: border-box;
     margin: 0 auto;
     position: relative;
+}
+
+.page {
+    display: none; /* 기본적으로 페이지 숨김 */
+}
+
+.page-1 {
+    display: block; /* 처음에 page-1만 보이도록 설정 */
+}
+
+
+/* 버튼 관련 css */
+.buttonDiv {
+    display: flex;
+    justify-content: flex-end; /* 버튼을 오른쪽으로 배치 */
+    gap: 10px; /* 버튼들 사이의 간격 */
+    margin-bottom: 20px; /* 버튼과 컨테이너 사이 간격 */
+}
+
+.buttonDiv button {
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #9c9c9c;
+    border: none;
+    border-radius: 5px;
+    color: white;
+
+}
+
+.pageButton {
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center;
+    gap: 50px; /* 버튼 간 간격 */
+    background-color: black; /* 배경색 */
+    padding: 10px 0; /* 상하 여백 */
+    width: 100%; /* 전체 너비 */
+    position: fixed;
+    bottom: 40px;
+    left: 0; /* 왼쪽에 고정 */
+    z-index: 2; /* 다른 요소들보다 위에 오도록 설정 */
+}
+
+.preBtn, .nextBtn {
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #5a5a5a; /* 파란색 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.preBtn:hover, .nextBtn:hover {
+    background-color: #0056b3;
 }
 
 @media print {

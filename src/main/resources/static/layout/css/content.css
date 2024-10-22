@@ -1,8 +1,13 @@
+body {
+    background-color: #f0f0f5; /* 헤더, 푸터, 콘텐츠 제외 배경색 */
+}
+
 .content {
     max-width: 1200px;
     width: 100%;
     height: auto;
-    border: 2px solid;
     margin: 0 auto;
     margin-top: 50px;
+    z-index: 0;
+    position: relative; /* 상대적인 위치 설정 */
 }
