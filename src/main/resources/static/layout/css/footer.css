@@ -1,0 +1,37 @@
+/* 전체 푸터 영역 스타일 */
+.bottomBar {
+    background-color: #2c3e50; /* 어두운 배경색 */
+    color: #ecf0f1; /* 밝은 텍스트 색상 */
+    padding: 15px 0; /* 위아래 패딩 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    font-family: 'Arial', sans-serif; /* 폰트 설정 */
+    font-size: 14px; /* 폰트 크기 */
+    width: 100%;
+    position: fixed; /* 화면 하단에 고정 */
+    bottom: 0;
+    left: 0;
+}
+
+/* 푸터의 텍스트 스타일 */
+.bottomBar p {
+    margin: 0;
+    padding: 0;
+    line-height: 1.6; /* 줄 간격 조절 */
+}
+
+/* 링크 스타일링이 필요한 경우 추가 */
+.bottomBar a {
+    color: #f39c12; /* 링크 색상 */
+    text-decoration: none;
+}
+
+.bottomBar a:hover {
+    text-decoration: underline; /* 마우스를 올렸을 때 밑줄 */
+}
+
+/* 반응형 스타일링 */
+@media (max-width: 768px) {
+    .bottomBar {
+        font-size: 12px; /* 모바일 화면에서 폰트 크기 줄이기 */
+    }
+}

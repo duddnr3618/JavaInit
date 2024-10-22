@@ -1,0 +1,95 @@
+/* 전체 navBar 스타일 */
+.navBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    color: white;
+}
+
+/* 로고 스타일 */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo a{
+    text-decoration: none;
+    color: white;
+}
+
+/* 메뉴바 스타일 */
+.menuBar {
+    flex: 1; /* 메뉴가 중앙에 위치하도록 */
+    display: flex;
+    justify-content: center; /* 메뉴 중앙 정렬 */
+}
+
+.menuBar ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.menuBar ul li {
+    position: relative;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.menuBar ul ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #444;
+    padding: 10px 0;
+    min-width: 150px;
+}
+
+.menuBar ul li:hover ul {
+    display: block;
+}
+
+.menuBar ul ul li {
+    padding: 10px 20px;
+}
+
+.menuBar ul ul li:hover {
+    background-color: #666;
+}
+
+/* 햄버거 버튼 스타일 */
+.hamburger {
+    font-size: 30px;
+    cursor: pointer;
+    display: none; /* 기본적으로 숨김 (모바일에서만 보이도록) */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .menuBar ul {
+        flex-direction: column; /* 메뉴를 세로로 나열 */
+        display: none;
+        width: 100%;
+        background-color: #333;
+    }
+
+    .menuBar.active ul {
+        display: flex; /* 햄버거 메뉴 클릭 시 보이도록 설정 */
+    }
+
+    .hamburger {
+        display: block; /* 모바일에서 햄버거 버튼 보이기 */
+    }
+
+    .menuBar ul li {
+        width: 100%; /* 모바일 화면에서 메뉴가 꽉 차도록 설정 */
+    }
+
+    .menuBar ul ul {
+        position: static; /* 서브메뉴도 정렬 */
+    }
+}
