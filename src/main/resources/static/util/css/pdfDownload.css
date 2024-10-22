@@ -1,0 +1,18 @@
+.container {
+    width: 210mm; /* A4 가로 */
+    height: 297mm; /* A4 세로 */
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    position: relative;
+}
+
+@media print {
+    .container {
+        border: none; /* 인쇄 시 경계선 제거 */
+        margin: 0;
+        padding: 0;
+    }
+}
