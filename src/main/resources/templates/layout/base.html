@@ -16,6 +16,7 @@
     <link rel="stylesheet" th:href="@{/layout/css/footer.css}" th:rel="stylesheet">
     <link rel="stylesheet" th:href="@{/layout/css/content.css}" th:rel="stylesheet">
 
+
     <th:block layout:fragment="script">
 
     </th:block>
@@ -25,11 +26,13 @@
     </th:block>
 </head>
 <body>
-    <div th:replace="layout/header::header"></div>
+    <div class="wrapper">
+        <div th:replace="layout/header::header"></div>
 
-    <div layout:fragment="content" class="content"></div>
+        <div layout:fragment="content" class="content"></div>
 
-    <div th:replace="layout/footer::footer"></div>
+        <div th:replace="layout/footer::footer"></div>
+    </div>
 
 </body>
 </html>

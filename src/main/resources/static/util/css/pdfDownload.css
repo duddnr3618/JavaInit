@@ -1,81 +1,71 @@
-.title{
+/* 버튼 div 스타일 */
+.btnDiv {
+    max-width: 210mm;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-}
-
-
-
-.container {
-    width: 210mm; /* A4 가로 */
-    height: 297mm; /* A4 세로 */
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 20px;
+    margin: 10px auto;
+    padding: 10px;
     box-sizing: border-box;
+}
+
+.btn-1, .btn-2 {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-1 button, .btn-2 button {
+    background-color: #666666;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-1 button:hover, .btn-2 button:hover {
+    background-color: #555;
+}
+
+/* 페이지 컨테이너 */
+.container {
+    max-width: 210mm;
+    padding: 20px;
     margin: 0 auto;
-    position: relative;
-}
-
-.page {
-    display: none; /* 기본적으로 페이지 숨김 */
-}
-
-.page-1 {
-    display: block; /* 처음에 page-1만 보이도록 설정 */
-}
-
-
-/* 버튼 관련 css */
-.buttonDiv {
     display: flex;
-    justify-content: flex-end; /* 버튼을 오른쪽으로 배치 */
-    gap: 10px; /* 버튼들 사이의 간격 */
-    margin-bottom: 20px; /* 버튼과 컨테이너 사이 간격 */
-}
-
-.buttonDiv button {
-    padding: 10px 20px;
-    font-size: 14px;
-    cursor: pointer;
-    background-color: #9c9c9c;
-    border: none;
-    border-radius: 5px;
-    color: white;
-
-}
-
-.pageButton {
-    display: flex;
-    justify-content: center; /* 중앙 정렬 */
+    flex-direction: column;
     align-items: center;
-    gap: 50px; /* 버튼 간 간격 */
-    background-color: black; /* 배경색 */
-    padding: 10px 0; /* 상하 여백 */
-    width: 100%; /* 전체 너비 */
-    position: fixed;
-    bottom: 40px;
-    left: 0; /* 왼쪽에 고정 */
-    z-index: 2; /* 다른 요소들보다 위에 오도록 설정 */
+    gap: 20px;
 }
 
-.preBtn, .nextBtn {
-    cursor: pointer;
-    padding: 10px 20px;
-    background-color: #5a5a5a; /* 파란색 */
+.container > div {
+    display: none; /* 기본적으로 모든 페이지 숨김 */
+}
+
+/* 페이지 스타일 */
+.page-1, .page-2, .page-3 {
+    width: 210mm;
+    height: 297mm;
+    border: 1px solid #ccc;
+    background-color: white;
+    font-size: 16px;
+}
+
+.pageDiv {
+    max-width: 100mm; /* A4 크기에 맞춤 */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    margin: 30px auto;
+
+}
+.pageDiv button {
+    background-color: #8c8b8b;
     color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
     border: none;
-    border-radius: 5px;
-}
-
-.preBtn:hover, .nextBtn:hover {
-    background-color: #0056b3;
-}
-
-@media print {
-    .container {
-        border: none; /* 인쇄 시 경계선 제거 */
-        margin: 0;
-        padding: 0;
-    }
+    cursor: pointer;
 }

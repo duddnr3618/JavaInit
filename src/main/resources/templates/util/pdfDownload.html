@@ -1,45 +1,58 @@
 <!doctype html>
 <html lang="ko"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://wwww.thymeleaf.org"
       layout:decorate="~{layout/base}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PDF</title>
 
-    <!-- 임포트 -->
-    <link rel="stylesheet" th:href="@{/util/css/pdfDownload.css}" th:rel="stylesheet">
-    <script th:href="@{/util/js/pdfDownload.js}"></script>
-    <!-- html2pdf 라이브러리 추가 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <!-- 내부임포트 -->
+    <link rel="stylesheet" href="/util/css/pdfDownload.css">
+    <!-- 외부 임포트 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 
-
-    <title>PDF_DOWNLOAD</title>
 </head>
 
+
+
 <div layout:fragment="content">
-    <div class="title">
-        <h2>PDF 다운</h2>
-    </div>
-    <div class="buttonDiv">
-        <button onclick="pdfPrint()">인쇄</button>
-        <button onclick="pdfDownload()">다운</button>
-    </div>
 
-    <div class="container">
-        <div class="page page-1">1</div>
-        <div class="page page-2">2</div>
-        <div class="page page-3">3</div>
-    </div>
+   <div class="btnDiv">
+       <div class="btn-1">
+           <button onclick="PdfSave()">임시저장</button>
+           <button onclick="PdfSavedLoad()">불러오기</button>
+       </div>
+       <div class="btn-2">
+           <button onclick="PdfAllDownload()">AllDOWNLOAD</button>
+           <button onclick="PdfDownload()">DOWNLOAD</button>
+           <button onclick="PdfPrint()">PRINT</button>
+       </div>
+   </div>
+   <div class="container">
+       <div class="page-1">1페이지
+           <input type="text">
+           <input type="text">
+           <input type="text">
+       </div>
+       <div class="page-2">2페이지
 
-    <div class="pageButton">
-        <div class="preBtn" onclick="prevPage()">이전</div>
-        <div></div>
-        <div class="nextBtn" onclick="nextPage()">다음</div>
-    </div>
+       </div>
+       <div class="page-3">3페이지
 
+       </div>
+   </div>
+
+   <div class="pageDiv">
+       <div class="preBtn" onclick="prePageBtn()"><button>이전</button></div>
+       <div class="currentPage"> / </div>
+       <div class="nextBtn" onclick="nextPageBtn()"><button>다음</button></div>
+   </div>
+
+
+    <script src="/util/js/pdfDownload.js"></script>
 </div>
 
 </html>
