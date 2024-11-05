@@ -1,6 +1,17 @@
 .submitBox  {
     padding: 5px 10px;
 }
+.submitBtn{
+    border: none;
+    background-color: #79a6ff;
+    color: white;
+    font-size: 20px;
+    width: 150px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: flex;
+    right: 10px;
+}
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;

@@ -8,3 +8,14 @@ function handleCustomInputs() {
         inputs[index].style.display = (select.value === "custInputOption") ? "inline" : "none";
     });
 }
+
+function InputData () {
+    const seed = document.getElementById("seed").value;
+    const lossRatio = document.getElementById("lossRatio").value;
+    const profitToLossRatio = document.getElementById("profitToLossRatio").value;
+    const stopLossRatio = document.getElementById("stopLossRatio").value;
+    console.log("seed",seed);
+    console.log("lossRatio",lossRatio);
+    console.log("profitToLossRatio",profitToLossRatio);
+    console.log("stopLossRatio",stopLossRatio);
+}
