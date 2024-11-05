@@ -1,5 +1,6 @@
 package com.example.javainit.trading.dto;
 
+import jakarta.persistence.Column;
 import lombok.Data;
 
 @Data
@@ -13,7 +14,8 @@ public class TradingDataDto {
     private Double actualProfit;       // 실제 이익
     private Double adjustedProfit;     // 보정 이익
     private String exchange;           // 거래소 이름
-    private String result;             // 결과 (승/패/교전)
+    private String tradingState;       // 결과 (승/패/교전)
     private Double winRate;            // 승률
     private String dateTime;
+    private String userEmail;
 }

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Data
@@ -43,14 +44,28 @@ public class TradingData {
     @Column(length = 50)
     private String exchange;
 
-    // Result (결과: 승/패/교전)
-    @Column(length = 10)
-    private String result;
-
     // Win Rate (승률)
     private Double winRate;
 
-    private LocalDateTime dateTime;
+    @Column(name = "user_email")
+    private String userEmail;
+
+    // DateTime을 String 형태로 저장
+    @Column(name = "date_time")
+    private String dateTime;
+
+    // 매매 끝,종료
+    @Enumerated(EnumType.STRING)
+    private TradingState tradingState;  // WIN, LOSS, DRAW, RUN 값 중 하나 저장
+
+    // Entity 저장 전에 dateTime 필드 형식 지정
+    @PrePersist
+    @PreUpdate
+    public void formatDateTime() {
+        if (dateTime == null) {
+            dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        }
+    }
 
     // DTO -> Entity 변환 메소드
     public static TradingData toTradingData(TradingDataDto dto) {
@@ -64,27 +79,41 @@ public class TradingData {
         tradingData.setActualProfit(dto.getActualProfit());
         tradingData.setAdjustedProfit(dto.getAdjustedProfit());
         tradingData.setExchange(dto.getExchange());
-        tradingData.setResult(dto.getResult());
+        tradingData.setUserEmail("admin");
         tradingData.setWinRate(dto.getWinRate());
-        tradingData.setDateTime(LocalDateTime.now()); // 현재 시간 설정
+
+        // DTO의 TradingState 값이 없을 때 기본값 RUN으로 설정
+        if (dto.getTradingState() != null) {
+            tradingData.setTradingState(com.example.javainit.trading.entity.TradingState.valueOf(dto.getTradingState()));
+        } else {
+            tradingData.setTradingState(com.example.javainit.trading.entity.TradingState.RUN); // 기본값 설정
+        }
+
         return tradingData;
     }
 
+
     // Entity -> DTO 변환 메소드
     public TradingDataDto toTradingDataDto() {
-        TradingDataDto dto = new TradingDataDto();
-        dto.setSeed(this.seed);
-        dto.setLossRatio(this.lossRatio);
-        dto.setProfitToLossRatio(this.profitToLossRatio);
-        dto.setStopLossRatio(this.stopLossRatio);
-        dto.setMargin(this.margin);
-        dto.setActualLoss(this.actualLoss);
-        dto.setActualProfit(this.actualProfit);
-        dto.setAdjustedProfit(this.adjustedProfit);
-        dto.setExchange(this.exchange);
-        dto.setResult(this.result);
-        dto.setWinRate(this.winRate);
-        return dto;
+        TradingDataDto tradingDataDto = new TradingDataDto();
+        tradingDataDto.setSeed(this.seed);
+        tradingDataDto.setLossRatio(this.lossRatio);
+        tradingDataDto.setProfitToLossRatio(this.profitToLossRatio);
+        tradingDataDto.setStopLossRatio(this.stopLossRatio);
+        tradingDataDto.setMargin(this.margin);
+        tradingDataDto.setActualLoss(this.actualLoss);
+        tradingDataDto.setActualProfit(this.actualProfit);
+        tradingDataDto.setAdjustedProfit(this.adjustedProfit);
+        tradingDataDto.setExchange(this.exchange);
+        tradingDataDto.setDateTime(this.dateTime); // 이미 포맷된 상태로 DTO에 설정
+        // Enum을 문자열로 변환하여 DTO에 설정
+        tradingDataDto.setTradingState(this.tradingState != null ? this.tradingState.name() : null);
+
+
+
+        tradingDataDto.setWinRate(this.winRate);
+
+        return tradingDataDto;
     }
 
 }

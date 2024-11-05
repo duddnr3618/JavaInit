@@ -10,6 +10,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="/trading/css/simulation.css">
         <script th:src="@{/trading/js/simulation.js}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <title>Simulation</title>
     </head>
 
@@ -81,7 +82,7 @@
                 <tr>
                     <th>거래소</th>
                     <th>
-                        <select class="custom-select" name="Exchange" oninput="InputData ()">
+                        <select class="custom-select" id="Exchange" name="Exchange" oninput="InputData ()">
                             <option value="0.05">비트겟</option>
                             <option value="0.1">바이낸스</option>
                             <option value="0.05">OKX</option>
@@ -89,15 +90,16 @@
                     </th>
                     <th>
                         <label style="display: inline-block; margin-right: 10px;">
-                            <input type="radio" name="result" value="승"> 승
+                            <input type="radio" name="TradingState" value="WIN"> 승
                         </label>
                         <label style="display: inline-block; margin-right: 10px;">
-                            <input type="radio" name="result" value="패"> 패
+                            <input type="radio" name="TradingState" value="LOSS"> 패
                         </label>
                         <label style="display: inline-block;">
-                            <input type="radio" name="result" value="교전"> 교전
+                            <input type="radio" name="TradingState" value="DRAW"> 교전
                         </label>
                     </th>
+
                     <td id="winRate">승률</td>
                 </tr>
             </table>

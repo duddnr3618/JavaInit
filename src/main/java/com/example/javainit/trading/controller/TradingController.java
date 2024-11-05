@@ -4,10 +4,8 @@ import com.example.javainit.trading.dto.TradingDataDto;
 import com.example.javainit.trading.service.TradingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,6 +21,7 @@ public class TradingController {
 
     @PostMapping("/submit")
     public String simulationSubmit(@ModelAttribute TradingDataDto tradingDataDto) {
+
         tradingService.save(tradingDataDto);
         System.out.println(">>>>" + tradingDataDto);
         return "redirect:/trading/simulation";

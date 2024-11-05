@@ -19,3 +19,4 @@ function InputData () {
     console.log("profitToLossRatio",profitToLossRatio);
     console.log("stopLossRatio",stopLossRatio);
 }
+
