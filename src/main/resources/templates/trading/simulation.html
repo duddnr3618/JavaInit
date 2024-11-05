@@ -11,75 +11,92 @@
         <link rel="stylesheet" href="/trading/css/simulation.css">
         <script th:src="@{/trading/js/simulation.js}"></script>
         <title>Simulation</title>
-
-
     </head>
 
     <div layout:fragment="content">
 
-        <form class="submitBox">
+        <form class="submitBox" action="/trading/submit" method="post">
             <table class="tableBox">
                 <tr>
                     <th>시드</th>
-                    <td><input type="text"></td>
+                    <td colspan="2"><input type="text" name="seed"></td>
                     <td>USDT</td>
                 </tr>
 
                 <tr>
                     <th>손실율</th>
                     <td>
-                        <select class="custom-select" onchange="handleCustomInputs()">
-                            <option value="20">20%</option>
-                            <option value="10">10%</option>
-                            <option value="5">5%</option>
+                        <select class="custom-select" name="lossRatio" onchange="handleCustomInputs()">
+                            <option value="0.2">20%</option>
+                            <option value="0.1">10%</option>
+                            <option value="0.05">5%</option>
                             <option value="custInputOption">직접입력</option>
                         </select>
-                        <input type="text" class="custom-input" style="display: none" placeholder="손실율 직접 입력">
+                        <input type="text" name="custom-input-lossRatio" class="custom-input" style="display: none" placeholder="손실율 직접 입력">
                     </td>
-                </tr>
-
-                <tr>
                     <th>손익비</th>
                     <td>
-                        <select class="custom-select" onchange="handleCustomInputs()">
+                        <select class="custom-select" name="profitToLossRatio" onchange="handleCustomInputs()">
                             <option value="1.618">1.618</option>
                             <option value="3.236">3.236</option>
                             <option value="custInputOption">직접입력</option>
                         </select>
-                        <input type="text" class="custom-input" style="display: none" placeholder="손익비 직접 입력">
+                        <input type="text" class="custom-input" name="custom-input-profitToLossRatio" style="display: none" placeholder="손익비 직접 입력">
                     </td>
-                    <td>BTC변동률</td>
                 </tr>
 
                 <tr>
                     <th>손절선</th>
-                    <td><input type="text"></td>
+                    <td colspan="2"><input type="text" name="stopLossRatio"></td>
                     <td>BTC변동률</td>
                 </tr>
                 <tr>
                     <th>증거금</th>
-                    <th class="tableContent1">5-2</th>
+                    <th colspan="3" id="margin" class="tableContent1"></th>
                 </tr>
                 <tr>
                     <th>실제 손실</th>
-                    <th>5-2</th>
+                    <td>USDT</td>
+                    <th>손실시 시드</th>
                     <td>USDT</td>
 
                 </tr>
                 <tr>
                     <th>실제 이익</th>
-                    <th>5-2</th>
+                    <td>USDT</td>
+                    <th>수익시 시드</th>
                     <td>USDT</td>
                 </tr>
                 <tr>
                     <th>보정 이익</th>
-                    <th>5-2</th>
+                    <td>5-2</td>
+                    <th>보정시 시드</th>
                     <td>USDT</td>
+                </tr>
+                <tr>
+                    <th>거래소</th>
+                    <th>
+                        <select class="custom-select" name="Exchange">
+                            <option value="0.05">비트겟</option>
+                            <option value="0.1">바이낸스</option>
+                            <option value="0.05">OKX</option>
+                        </select>
+                    </th>
+                    <th>
+                        <label style="display: inline-block; margin-right: 10px;">
+                            <input type="radio" name="result" value="승"> 승
+                        </label>
+                        <label style="display: inline-block; margin-right: 10px;">
+                            <input type="radio" name="result" value="패"> 패
+                        </label>
+                        <label style="display: inline-block;">
+                            <input type="radio" name="result" value="교전"> 교전
+                        </label>
+                    </th>
+                    <td id="winRate"></td>
                 </tr>
             </table>
         </form>
     </div>
-
-
 
 </html>
