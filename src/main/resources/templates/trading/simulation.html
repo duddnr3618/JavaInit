@@ -19,6 +19,7 @@
         <form class="submitBox" action="/trading/submit" method="post">
             <button class="submitBtn" type="submit">전쟁시작</button>
             <table class="tableBox">
+                <input type="hidden" value="admin" name="userEmail">
                 <tr>
                     <th>시드</th>
                     <td colspan="2"><input type="text" id="seed" name="seed" oninput="InputData ()"></td>
@@ -29,9 +30,9 @@
                     <th>손실율</th>
                     <td>
                         <select class="custom-select" id="lossRatio" name="lossRatio" oninput="InputData ()" onchange="handleCustomInputs()">
-                            <option value="0.2">20%</option>
-                            <option value="0.1">10%</option>
-                            <option value="0.05">5%</option>
+                            <option value="20">20%</option>
+                            <option value="10">10%</option>
+                            <option value="5">5%</option>
                             <option value="custInputOption">직접입력</option>
                         </select>
                         <input type="text" name="custom-input-lossRatio" class="custom-input" style="display: none" placeholder="손실율 직접 입력">

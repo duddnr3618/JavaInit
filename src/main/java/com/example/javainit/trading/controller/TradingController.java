@@ -21,8 +21,7 @@ public class TradingController {
 
     @PostMapping("/submit")
     public String simulationSubmit(@ModelAttribute TradingDataDto tradingDataDto) {
-
-        tradingService.save(tradingDataDto);
+        tradingService.saveOrUpdate(tradingDataDto);
         System.out.println(">>>>" + tradingDataDto);
         return "redirect:/trading/simulation";
     }
