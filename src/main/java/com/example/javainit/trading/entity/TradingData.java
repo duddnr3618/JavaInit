@@ -26,7 +26,7 @@ public class TradingData {
     private Double profitToLossRatio;
 
     // Stop Loss Ratio (손절선)
-    private Double stopLossRatio;
+    private Double lossLine;
 
     // Margin (증거금)
     private Double margin;
@@ -73,7 +73,7 @@ public class TradingData {
         tradingData.setSeed(dto.getSeed());
         tradingData.setLossRatio(dto.getLossRatio());
         tradingData.setProfitToLossRatio(dto.getProfitToLossRatio());
-        tradingData.setStopLossRatio(dto.getStopLossRatio());
+        tradingData.setLossLine(dto.getLossLine());
         tradingData.setMargin(dto.getMargin());
         tradingData.setActualLoss(dto.getActualLoss());
         tradingData.setActualProfit(dto.getActualProfit());
@@ -99,7 +99,7 @@ public class TradingData {
         tradingDataDto.setSeed(this.seed);
         tradingDataDto.setLossRatio(this.lossRatio);
         tradingDataDto.setProfitToLossRatio(this.profitToLossRatio);
-        tradingDataDto.setStopLossRatio(this.stopLossRatio);
+        tradingDataDto.setLossLine(this.lossLine);
         tradingDataDto.setMargin(this.margin);
         tradingDataDto.setActualLoss(this.actualLoss);
         tradingDataDto.setActualProfit(this.actualProfit);

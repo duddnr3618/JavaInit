@@ -27,7 +27,7 @@ public class TradingService {
             existingData.setSeed(tradingDataDto.getSeed());
             existingData.setLossRatio(tradingDataDto.getLossRatio());
             existingData.setProfitToLossRatio(tradingDataDto.getProfitToLossRatio());
-            existingData.setStopLossRatio(tradingDataDto.getStopLossRatio());
+            existingData.setLossLine(tradingDataDto.getLossLine());
             existingData.setMargin(tradingDataDto.getMargin());
             existingData.setActualLoss(tradingDataDto.getActualLoss());
             existingData.setActualProfit(tradingDataDto.getActualProfit());

@@ -8,7 +8,7 @@ public class TradingDataDto {
     private Double seed;               // 시드 금액
     private Double lossRatio;          // 손실율
     private Double profitToLossRatio;  // 손익비
-    private Double stopLossRatio;      // 손절선
+    private Double lossLine;      // 손절선
     private Double margin;             // 증거금
     private Double actualLoss;         // 실제 손실
     private Double actualProfit;       // 실제 이익

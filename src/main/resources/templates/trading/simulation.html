@@ -50,9 +50,9 @@
 
                 <tr>
                     <th>손절선</th>
-                    <td><input type="text" id="stopLossRatio" name="stopLossRatio" oninput="InputData ()"></td>
+                    <td><input type="text" id="lossLine" name="lossLine" oninput="InputData ()"></td>
                     <th>익절선</th>
-                    <td></td>
+                    <td id="profitLine">-</td>
                 </tr>
                 <tr>
                     <th>증거금</th>
@@ -62,31 +62,31 @@
                     <td colspan="4" style="background-color: #8c8b8b"></td>
                 </tr>
                 <tr>
-                    <th>실제 손실</th>
-                    <td>USDT</td>
+                    <th >실제 손실</th>
+                    <td id="actualLoss">-</td>
                     <th>손실시 시드</th>
-                    <td>USDT</td>
+                    <td id="lostSeed">-</td>
 
                 </tr>
                 <tr>
-                    <th>실제 이익</th>
-                    <td>USDT</td>
+                    <th >실제 이익</th>
+                    <td id="actualProfit">-</td>
                     <th>수익시 시드</th>
-                    <td>USDT</td>
+                    <td id="profitedSeed">-</td>
                 </tr>
                 <tr>
-                    <th>보정 이익</th>
-                    <td>5-2</td>
+                    <th >보정 이익</th>
+                    <td id="adjustedProfit">-</td>
                     <th>보정시 시드</th>
-                    <td>USDT</td>
+                    <td id="adjustedProfitSeed">-</td>
                 </tr>
                 <tr>
                     <th>거래소</th>
                     <th>
                         <select class="custom-select" id="Exchange" name="Exchange" oninput="InputData ()">
-                            <option value="0.05">비트겟</option>
+                            <option value="0.06">비트겟</option>
                             <option value="0.1">바이낸스</option>
-                            <option value="0.05">OKX</option>
+                            <option value="0.06">OKX</option>
                         </select>
                     </th>
                     <th>
