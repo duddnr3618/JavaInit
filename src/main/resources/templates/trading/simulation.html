@@ -9,29 +9,77 @@
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="/trading/css/simulation.css">
+        <script th:src="@{/trading/js/simulation.js}"></script>
         <title>Simulation</title>
+
+
     </head>
 
     <div layout:fragment="content">
-        <table class="simulTable">
-           <tr>
-               <th>test</th>
-               <th>test</th>
-               <td>test</td>
-               <td>test</td>
-               <td>test</td>
-           </tr>
-           <tr>
-               <td>test</td>
-               <td>test</td>
-           </tr>
-           <tr>
-               <td>test</td>
-               <td>test</td>
-           </tr>
-        </table>
 
+        <form class="submitBox">
+            <table class="tableBox">
+                <tr>
+                    <th>시드</th>
+                    <td><input type="text"></td>
+                    <td>USDT</td>
+                </tr>
 
+                <tr>
+                    <th>손실율</th>
+                    <td>
+                        <select class="custom-select" onchange="handleCustomInputs()">
+                            <option value="20">20%</option>
+                            <option value="10">10%</option>
+                            <option value="5">5%</option>
+                            <option value="custInputOption">직접입력</option>
+                        </select>
+                        <input type="text" class="custom-input" style="display: none" placeholder="손실율 직접 입력">
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>손익비</th>
+                    <td>
+                        <select class="custom-select" onchange="handleCustomInputs()">
+                            <option value="1.618">1.618</option>
+                            <option value="3.236">3.236</option>
+                            <option value="custInputOption">직접입력</option>
+                        </select>
+                        <input type="text" class="custom-input" style="display: none" placeholder="손익비 직접 입력">
+                    </td>
+                    <td>BTC변동률</td>
+                </tr>
+
+                <tr>
+                    <th>손절선</th>
+                    <td><input type="text"></td>
+                    <td>BTC변동률</td>
+                </tr>
+                <tr>
+                    <th>증거금</th>
+                    <th class="tableContent1">5-2</th>
+                </tr>
+                <tr>
+                    <th>실제 손실</th>
+                    <th>5-2</th>
+                    <td>USDT</td>
+
+                </tr>
+                <tr>
+                    <th>실제 이익</th>
+                    <th>5-2</th>
+                    <td>USDT</td>
+                </tr>
+                <tr>
+                    <th>보정 이익</th>
+                    <th>5-2</th>
+                    <td>USDT</td>
+                </tr>
+            </table>
+        </form>
     </div>
+
+
 
 </html>

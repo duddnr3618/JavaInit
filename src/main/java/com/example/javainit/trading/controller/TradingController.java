@@ -13,4 +13,6 @@ public class TradingController {
         return "trading/simulation";
     }
 
+
+
 }

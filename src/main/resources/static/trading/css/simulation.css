@@ -1,3 +1,48 @@
-.simulTable  {
-    border: 1px solid;
+.submitBox  {
+    padding: 5px 10px;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px 10px;
+    vertical-align: middle;
+    width: 100%;
+}
+.tableBox {
+    margin: 0 auto;
+    width: 100%;
+
+}
+.tableBox th, .tableBox td {
+    width: 25%;
+    font-size: 20px;
+    text-align: center;
+}
+.tableBox input {
+    border: 1px solid #79a6ff;
+    background-color: #ffffff;
+    width: 100%;
+    text-align: center;
+    border-radius: 15px;
+
+}
+.tableBox section {
+    text-align: center;
+    align-items: center;
+}
+.tableContent1{
+    background-color: #79a6ff;
+    color: white;
+    text-align: center;
+    font-weight: 700;
+}
+.custom-select{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #79a6ff; /* 테두리 색상 변경 */
+    border-radius: 5px;       /* 모서리 둥글게 */
+    background-color: #f1f1f1; /* 배경색 */
+    color: #333;              /* 글자색 */
+    cursor: pointer;
 }
