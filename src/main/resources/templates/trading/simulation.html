@@ -16,13 +16,20 @@
 
     <div layout:fragment="content">
 
-        <form class="submitBox" action="/trading/submit" method="post">
-            <button class="submitBtn" type="submit">전쟁시작</button>
+        <form class="submitBox" action="/trading/submit" method="post" onsubmit="InputData()">
+            <div>
+                <button class="submitBtn" type="submit">전쟁시작</button>
+                <button class="submitBtn" type="submit">전쟁종료</button>
+            </div>
             <table class="tableBox">
                 <input type="hidden" value="admin" name="userEmail">
                 <tr>
                     <th>시드</th>
-                    <td colspan="2"><input type="text" id="seed" name="seed" oninput="InputData ()"></td>
+                    <td colspan="2">
+                        <input type="text" id="seed" name="seed" oninput="InputData()"
+                               th:value="${getTradingDataDto != null ? getTradingDataDto.seed : ''}">
+                    </td>
+
                     <td>USDT</td>
                 </tr>
 
@@ -52,27 +59,31 @@
 
                 <tr>
                     <th>손절선</th>
-                    <td><input type="text" id="lossLine" name="lossLine" oninput="InputData ()"></td>
+                    <td><input type="text" id="lossLine" name="lossLine" oninput="InputData ()"
+                               th:value="${getTradingDataDto != null ? getTradingDataDto.lossLine : ''}"></td>
                     <th>익절선</th>
                     <td id="profitLine">-</td>
                 </tr>
                 <tr>
                     <th>증거금</th>
                     <th colspan="3" id="margin" class="tableContent1"></th>
+                    <input type="hidden" id="hiddenMargin" name="margin">
                 </tr>
                 <tr>
                     <td colspan="4" style="background-color: #8c8b8b"></td>
                 </tr>
                 <tr>
-                    <th >실제 손실</th>
-                    <td id="actualLoss">-</td>
+                    <th >손실금</th>
+                    <td id="lossAmount" th:text="${getTradingDataDto != null ? getTradingDataDto.lossAmount : ''}">-</td>
+                    <input type="hidden" id="hiddenLossAmount" name="lossAmount" >
                     <th>손실시 시드</th>
-                    <td id="lostSeed">-</td>
+                    <td id="lostSeed" >-</td>
 
                 </tr>
                 <tr>
-                    <th >실제 이익</th>
-                    <td id="actualProfit">-</td>
+                    <th >이익금</th>
+                    <td id="profitAmount" th:text="${getTradingDataDto != null ? getTradingDataDto.profitAmount : ''}">-</td>
+                    <input type="hidden" id="hiddenProfitAmount" name="profitAmount">
                     <th>수익시 시드</th>
                     <td id="profitedSeed">-</td>
                 </tr>
@@ -86,9 +97,9 @@
                     <th>거래소</th>
                     <th>
                         <select class="custom-select" id="Exchange" name="Exchange" oninput="InputData ()">
-                            <option value="0.06">비트겟</option>
-                            <option value="0.1">바이낸스</option>
-                            <option value="0.06">OKX</option>
+                            <option value="비트겟">비트겟</option>
+                            <option value="바이낸스">바이낸스</option>
+                            <option value="OKX">OKX</option>
                         </select>
                     </th>
                     <th>

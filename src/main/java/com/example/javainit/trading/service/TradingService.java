@@ -8,12 +8,24 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
 public class TradingService {
 
     private final TradingDataRepository tradingDataRepository;
+
+    @Transactional
+    public TradingDataDto getTradingData(String userEmail) {
+        TradingData existingData = tradingDataRepository
+                .findByUserEmailAndTradingState(userEmail, TradingState.RUN)
+                .stream().findFirst().orElse(null);
+
+        return existingData != null ? existingData.toTradingDataDto(existingData) : null;
+    }
+
 
     @Transactional
     public void saveOrUpdate(TradingDataDto tradingDataDto) {
@@ -23,31 +35,28 @@ public class TradingService {
                 .findByUserEmailAndTradingState(tradingDataDto.getUserEmail(), TradingState.RUN)
                 .stream().findFirst().orElse(null);
         if (existingData != null) {
-            // 기존 데이터가 있으면 해당 데이터를 업데이트
-            existingData.setSeed(tradingDataDto.getSeed());
-            existingData.setLossRatio(tradingDataDto.getLossRatio());
-            existingData.setProfitToLossRatio(tradingDataDto.getProfitToLossRatio());
-            existingData.setLossLine(tradingDataDto.getLossLine());
-            existingData.setMargin(tradingDataDto.getMargin());
-            existingData.setActualLoss(tradingDataDto.getActualLoss());
-            existingData.setActualProfit(tradingDataDto.getActualProfit());
-            existingData.setAdjustedProfit(tradingDataDto.getAdjustedProfit());
-            existingData.setExchange(tradingDataDto.getExchange());
-            existingData.setWinRate(tradingDataDto.getWinRate());
-            existingData.setDateTime(tradingDataDto.getDateTime());
-
+            if(tradingDataDto.getTradingState().equals("WIN")){
+                existingData.setLossAmount(0.0);
+                existingData.setProfitAmount(tradingDataDto.getProfitAmount());
+            }else if(tradingDataDto.getTradingState().equals("LOSS")){
+                existingData.setLossAmount(tradingDataDto.getLossAmount());
+                existingData.setProfitAmount(0.0);
+            }
             // TradingState가 있으면 업데이트
             if (tradingDataDto.getTradingState() != null) {
                 existingData.setTradingState(TradingState.valueOf(tradingDataDto.getTradingState()));
             }
-
-            tradingDataRepository.save(existingData); // 업데이트된 데이터 저장
+            tradingDataRepository.save(existingData);
         }  else {
             // 데이터가 없으면 새로 저장
             TradingData newData = TradingData.toTradingData(tradingDataDto);
-            newData.setUserEmail(tradingDataDto.getUserEmail()); // 클라이언트에서 받은 userEmail 사용
+            newData.setUserEmail(tradingDataDto.getUserEmail());
             newData.setTradingState(TradingState.RUN); // 기본 상태값 설정
             tradingDataRepository.save(newData);
         }
+
     }
+
+
+
 }

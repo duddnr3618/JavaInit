@@ -16,7 +16,6 @@ public class TradingData {
     private Long id;
 
     // Seed (시드)
-    @Column(nullable = false)
     private Double seed;  // 시드 금액
 
     // Loss Ratio (손실율)
@@ -25,20 +24,17 @@ public class TradingData {
     // Profit to Loss Ratio (손익비)
     private Double profitToLossRatio;
 
-    // Stop Loss Ratio (손절선)
+    // Stop Loss Line (손절선)
     private Double lossLine;
 
     // Margin (증거금)
     private Double margin;
 
     // Actual Loss (실제 손실)
-    private Double actualLoss;
+    private Double lossAmount;
 
     // Actual Profit (실제 이익)
-    private Double actualProfit;
-
-    // Adjusted Profit (보정 이익)
-    private Double adjustedProfit;
+    private Double profitAmount;
 
     // Exchange (거래소)
     @Column(length = 50)
@@ -75,9 +71,8 @@ public class TradingData {
         tradingData.setProfitToLossRatio(dto.getProfitToLossRatio());
         tradingData.setLossLine(dto.getLossLine());
         tradingData.setMargin(dto.getMargin());
-        tradingData.setActualLoss(dto.getActualLoss());
-        tradingData.setActualProfit(dto.getActualProfit());
-        tradingData.setAdjustedProfit(dto.getAdjustedProfit());
+        tradingData.setLossAmount(dto.getLossAmount());
+        tradingData.setProfitAmount(dto.getProfitAmount());
         tradingData.setExchange(dto.getExchange());
         tradingData.setUserEmail("admin");
         tradingData.setWinRate(dto.getWinRate());
@@ -94,23 +89,19 @@ public class TradingData {
 
 
     // Entity -> DTO 변환 메소드
-    public TradingDataDto toTradingDataDto() {
+    public TradingDataDto toTradingDataDto(TradingData tradingData) {
         TradingDataDto tradingDataDto = new TradingDataDto();
         tradingDataDto.setSeed(this.seed);
         tradingDataDto.setLossRatio(this.lossRatio);
         tradingDataDto.setProfitToLossRatio(this.profitToLossRatio);
         tradingDataDto.setLossLine(this.lossLine);
         tradingDataDto.setMargin(this.margin);
-        tradingDataDto.setActualLoss(this.actualLoss);
-        tradingDataDto.setActualProfit(this.actualProfit);
-        tradingDataDto.setAdjustedProfit(this.adjustedProfit);
+        tradingDataDto.setLossAmount(this.lossAmount);
+        tradingDataDto.setProfitAmount(this.profitAmount);
         tradingDataDto.setExchange(this.exchange);
         tradingDataDto.setDateTime(this.dateTime); // 이미 포맷된 상태로 DTO에 설정
         // Enum을 문자열로 변환하여 DTO에 설정
         tradingDataDto.setTradingState(this.tradingState != null ? this.tradingState.name() : null);
-
-
-
         tradingDataDto.setWinRate(this.winRate);
 
         return tradingDataDto;
