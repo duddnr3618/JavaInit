@@ -35,7 +35,8 @@
                             <option value="5">5%</option>
                             <option value="custInputOption">직접입력</option>
                         </select>
-                        <input type="text" name="custom-input-lossRatio" class="custom-input" style="display: none" placeholder="손실율 직접 입력">
+                        <input type="text" name="custom-input-lossRatio" class="custom-input" style="display: none"
+                               placeholder="손실율 직접 입력" oninput="updateCustomInput('lossRatio', this.value)">
                     </td>
                     <th>손익비</th>
                     <td>
@@ -44,7 +45,8 @@
                             <option value="3.236">3.236</option>
                             <option value="custInputOption">직접입력</option>
                         </select>
-                        <input type="text" class="custom-input" name="custom-input-profitToLossRatio" style="display: none" placeholder="손익비 직접 입력">
+                        <input type="text" class="custom-input" name="custom-input-profitToLossRatio" style="display: none"
+                               placeholder="손익비 직접 입력" oninput="updateCustomInput('profitToLossRatio', this.value)">
                     </td>
                 </tr>
 
