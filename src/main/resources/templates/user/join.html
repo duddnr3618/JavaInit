@@ -8,18 +8,38 @@
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Sgin In</title>
+        <link rel="stylesheet" href="/user/css/join.css">
+        <script th:src="@{/user/js/join.js}"></script>
+        <title>Join</title>
     </head>
 
     <div layout:fragment="content">
        <div class="formDiv">
-           <form>
-               <table>
-                   <tr>
-                       <th></th>
-                       <td></td>
-                   </tr>
-               </table>
+           <form action="/user/join" method="post" >
+               <div>
+                   <label for="userEmail">이메일</label>
+                   <input type="text" id="userEmail" name="userEmail">
+               </div>
+               <div>
+                   <label for="password">비밀번호</label>
+                   <input type="password" id="password" name="password">
+               </div>
+               <div>
+                   <label for="password2">비밀번호 확인</label>
+                   <input type="password" id="password2" class="password2">
+               </div>
+               <div>
+                   <label for="userName">이름</label>
+                   <input type="text" id="userName" name="userName">
+               </div>
+               <div>
+                   <label for="userPhone">휴대폰</label>
+                   <input type="text" id="userPhone" name="userPhone">
+               </div>
+               <div class="btnDiv">
+                   <button type="submit">회원가입</button>
+                   <button type="reset">취소</button>
+               </div>
            </form>
        </div>
     </div>

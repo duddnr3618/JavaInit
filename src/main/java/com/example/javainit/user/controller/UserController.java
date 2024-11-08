@@ -1,23 +1,39 @@
 package com.example.javainit.user.controller;
 
+import com.example.javainit.user.dto.UserDto;
+import com.example.javainit.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
 
+    private final UserService userService;
 
-    @GetMapping("/login")
-    public String login() {
+    @GetMapping("/loginPage")
+    public String loginPage() {
         return "user/login";
     }
 
-    @GetMapping("/join")
-    public String join() {
+
+    @GetMapping("/joinPage")
+    public String joinPage() {
         return "user/join";
     }
+
+    @PostMapping("/join")
+    public String join(@ModelAttribute UserDto userDto) {
+
+        userService.saveOrUpdate(userDto);
+        return "redirect:/user/login";
+    }
+
+    @PostMapping("/roleUpdate")
+    public void roleUpdate(@ModelAttribute UserDto userDto) {
+        userService.userRoleUpdate(userDto);
+    }
+
 }

@@ -1,0 +1,58 @@
+.formDiv {
+    width: 350px;
+    padding: 40px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 0 auto;
+}
+
+/* 폼 안의 개별 입력 항목 스타일 */
+.formDiv div {
+    margin-bottom: 20px;
+}
+
+.formDiv label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.formDiv input[type="text"],
+.formDiv input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.formDiv input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.formDiv input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* 회원가입 링크 스타일 */
+.formDiv a {
+    display: inline-block;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.formDiv a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}

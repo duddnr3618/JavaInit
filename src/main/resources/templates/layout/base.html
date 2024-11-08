@@ -27,11 +27,12 @@
 </head>
 <body>
     <div class="wrapper">
-        <div th:replace="layout/header::header"></div>
+        <div th:replace="~{layout/header::header}"></div>
 
         <div layout:fragment="content" class="content"></div>
 
-        <div th:replace="layout/footer::footer"></div>
+        <div th:replace="~{layout/footer::footer}"></div>
+
     </div>
 
 </body>

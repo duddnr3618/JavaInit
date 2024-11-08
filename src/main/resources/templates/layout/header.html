@@ -3,8 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <div th:fragment="header">
-
-        <link rel="stylesheet" th:href="@{/layout/js/header.js}">
+        <script th:src="@{/layout/js/header.js}"></script>
         <div class="navBar">
             <div class="logo">
                 <a href="/">Solomon</a>
@@ -44,7 +43,7 @@
                     </li>
                 </ul>
                 <div>
-                    <a href="/user/login">
+                    <a href="/user/loginPage">
                         login
                     </a>
                 </div>

@@ -8,21 +8,25 @@
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Sgin In</title>
+        <link rel="stylesheet" href="/user/css/login.css">
+        <script th:src="@{/user/js/login.js}"></script>
+        <title>Login</title>
     </head>
 
     <div layout:fragment="content">
        <div class="formDiv">
            <form action="/user/login" method="post">
                <div>
-                   Email : <input type="text" class="userEmail" name="userEmail">
+                   <label for="userEmail">Email:</label>
+                   <input type="text" id="userEmail" class="userEmail" name="userEmail" required>
                </div>
                <div>
-                   Password : <input type="text" class="password" name="password">
+                   <label for="password">Password:</label>
+                   <input type="password" id="password" class="password" name="password" required>
                </div>
                <div>
-                   <input type="submit"> 로그인
-                   <div><a href="/user/join">회원가입</a></div>
+                   <input type="submit" value="로그인">
+                   <div><a href="/user/joinPage">회원가입</a></div>
                </div>
            </form>
        </div>
