@@ -18,7 +18,6 @@ public class UserController {
         return "user/login";
     }
 
-
     @GetMapping("/joinPage")
     public String joinPage() {
         return "user/join";
@@ -28,12 +27,10 @@ public class UserController {
     public String join(@ModelAttribute UserDto userDto) {
 
         userService.saveOrUpdate(userDto);
-        return "redirect:/user/login";
+        return "redirect:/user/loginPage";
     }
 
-    @PostMapping("/roleUpdate")
-    public void roleUpdate(@ModelAttribute UserDto userDto) {
-        userService.userRoleUpdate(userDto);
-    }
+
+
 
 }

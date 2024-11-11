@@ -28,17 +28,4 @@ public class UserService {
         userRepository.save(userEntity);
     }
 
-    public void userRoleUpdate(UserDto userDto) {
-        // userEmail로 UserEntity를 조회
-        UserEntity userEntity = userRepository.findByUserEmail(userDto.getUserEmail());
-
-        if (userEntity != null) {
-            userEntity.setRole(Role.PRO);
-            userRepository.save(userEntity);
-        } else {
-            throw new IllegalArgumentException("User not found with email: " + userDto.getUserEmail());
-        }
-    }
-
-
 }

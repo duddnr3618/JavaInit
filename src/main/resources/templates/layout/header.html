@@ -43,8 +43,13 @@
                     </li>
                 </ul>
                 <div>
-                    <a href="/user/loginPage">
-                        login
+                    <a th:href="@{/user/loginPage}">
+                        로그인
+                    </a>
+                </div>
+                <div>
+                    <a th:href="@{/user/logout}">
+                        로그아웃
                     </a>
                 </div>
                 <div class="hamburger" onclick="toggleMenu()">&#9776;</div>

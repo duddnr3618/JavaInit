@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="ko"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://wwww.thymeleaf.org"
+      xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{layout/base}">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="/trading/css/simulation.css">
+        <link rel="stylesheet" th:href="@{/trading/css/simulation.css}">
         <script th:src="@{/trading/js/simulation.js}"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <title>Simulation</title>
