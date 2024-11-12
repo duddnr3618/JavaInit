@@ -74,7 +74,7 @@ public class TradingData {
         tradingData.setLossAmount(dto.getLossAmount());
         tradingData.setProfitAmount(dto.getProfitAmount());
         tradingData.setExchange(dto.getExchange());
-        tradingData.setUserEmail("admin");
+        tradingData.setUserEmail(dto.getUserEmail());
         tradingData.setWinRate(dto.getWinRate());
 
         // DTO의 TradingState 값이 없을 때 기본값 RUN으로 설정
