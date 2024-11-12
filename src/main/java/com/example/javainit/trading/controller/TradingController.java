@@ -20,8 +20,12 @@ public class TradingController {
 
     @GetMapping("/simulation")
     public String simulation(@AuthenticationPrincipal CustomUserDetails user, Model model) {
+        if(user == null){
 
-        // 기존 데이터 존재시
+            return "redirect:/";
+        }
+        
+        // 로그인 시
         String userEmail = user.getUsername();
         TradingDataDto getTradingDataDto = tradingService.getTradingData(userEmail);
         model.addAttribute("getTradingDataDto", getTradingDataDto);
