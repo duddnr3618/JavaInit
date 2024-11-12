@@ -66,12 +66,7 @@
     background-color: #666;
 }
 
-/* 햄버거 버튼 스타일 */
-.hamburger {
-    font-size: 30px;
-    cursor: pointer;
-    display: none; /* 기본적으로 숨김 (모바일에서만 보이도록) */
-}
+
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
@@ -82,13 +77,6 @@
         background-color: #333;
     }
 
-    .menuBar.active ul {
-        display: flex; /* 햄버거 메뉴 클릭 시 보이도록 설정 */
-    }
-
-    .hamburger {
-        display: block; /* 모바일에서 햄버거 버튼 보이기 */
-    }
 
     .menuBar ul li {
         width: 100%; /* 모바일 화면에서 메뉴가 꽉 차도록 설정 */

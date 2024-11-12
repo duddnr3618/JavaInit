@@ -12,6 +12,13 @@
 </head>
 
 <div layout:fragment="content">
+    <div>
+        <p th:if="${userEmail == null}" th:text="비로그인"></p>
+        <p th:if="${userEmail != null}" th:text="'이메일: ' + ${userEmail}">사용자 이메일</p>
+        <p th:if="${userName != null}" th:text="'이름: ' + ${userName}">사용자 이름</p>
+        <p th:if="${userRole != null}" th:text="'역할: ' + ${userRole}">사용자 역할</p>
+    </div>
+
 </div>
 
 </html>

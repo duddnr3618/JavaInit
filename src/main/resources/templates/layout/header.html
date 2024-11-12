@@ -43,16 +43,13 @@
                     </li>
                 </ul>
                 <div>
-                    <a th:href="@{/user/loginPage}">
-                        로그인
-                    </a>
+                    <!-- 로그인/로그아웃 링크에 id 추가 -->
+                    <a id="loginLink"  th:href="@{/user/loginPage}">로그인</a>
+                    <a id="logoutLink" th:href="@{/user/logout}" style="display: none;">로그아웃</a>
+
+                    <!-- 사용자 인사말을 표시할 요소 (JavaScript에서 동적으로 추가) -->
+                    <div id="userGreeting" style="display: none;"></div>
                 </div>
-                <div>
-                    <a th:href="@{/user/logout}">
-                        로그아웃
-                    </a>
-                </div>
-                <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
             </div>
 
         </div>
