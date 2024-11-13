@@ -81,7 +81,6 @@ document.addEventListener("DOMContentLoaded", function() {
             // userInfo가 정의되면 값 설정
             var userEmail = document.getElementById("userEmail").value = window.userInfo.userEmail;
             clearInterval(intervalId); // 설정 후 인터벌 중지
-            console.log("simul >>>>>", userEmail)
 
         } else {
             console.log("userInfo가 아직 정의되지 않았습니다.");

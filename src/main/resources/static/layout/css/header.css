@@ -14,16 +14,17 @@
     font-weight: bold;
 }
 
-.logo a{
+.logo a {
     text-decoration: none;
     color: white;
 }
 
 /* 메뉴바 스타일 */
 .menuBar {
-    flex: 1; /* 메뉴가 중앙에 위치하도록 */
+    flex: 1;
     display: flex;
-    justify-content: center; /* 메뉴 중앙 정렬 */
+    justify-content: center;
+    margin-left: 40px;
 }
 
 .menuBar ul {
@@ -39,7 +40,7 @@
     cursor: pointer;
 }
 
-.menuBar ul li ul li a{
+.menuBar ul li ul li a {
     text-decoration: none;
     color: white;
 }
@@ -66,23 +67,58 @@
     background-color: #666;
 }
 
+.loginDiv {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
 
+/* 햄버거 버튼 스타일 */
+.hamburger {
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+
+/* 로그인 메뉴 스타일 */
+.loginMenu {
+    position: absolute;
+    top: 40px; /* navBar 아래에 표시 */
+    right: 0;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: none; /* 기본적으로 숨김 */
+    flex-direction: column;
+    width: 100px;
+}
+
+.loginMenu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 0;
+}
+
+.loginMenu a:hover {
+    color: #ddd;
+}
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
     .menuBar ul {
-        flex-direction: column; /* 메뉴를 세로로 나열 */
+        flex-direction: column;
         display: none;
         width: 100%;
         background-color: #333;
     }
 
-
     .menuBar ul li {
-        width: 100%; /* 모바일 화면에서 메뉴가 꽉 차도록 설정 */
+        width: 100%;
     }
 
     .menuBar ul ul {
-        position: static; /* 서브메뉴도 정렬 */
+        position: static;
     }
 }

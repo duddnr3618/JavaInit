@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 public class TradingDataDto {
     private Double seed;               // 시드 금액
+    private Double afterSeed;
     private Double lossRatio;          // 손실율
     private Double profitToLossRatio;  // 손익비
     private Double lossLine;            // 손절선

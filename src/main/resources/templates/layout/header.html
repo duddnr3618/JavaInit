@@ -12,9 +12,9 @@
                 <ul>
                     <li>트레이딩
                         <ul>
-                            <li><a href="trading/simulation">전쟁설계</a></li>
-                            <li>전쟁통계</li>
-                            <li>3-3</li>
+                            <li><a href="/trading/simulation">전쟁설계</a></li>
+                            <li><a href="/trading/historyPage">전쟁기록</a></li>
+                            <li></li>
                         </ul>
 
                     </li>
@@ -42,13 +42,14 @@
 
                     </li>
                 </ul>
-                <div>
-                    <!-- 로그인/로그아웃 링크에 id 추가 -->
-                    <a id="loginLink"  th:href="@{/user/loginPage}">로그인</a>
-                    <a id="logoutLink" th:href="@{/user/logout}" style="display: none;">로그아웃</a>
-
-                    <!-- 사용자 인사말을 표시할 요소 (JavaScript에서 동적으로 추가) -->
-                    <div id="userGreeting" style="display: none;"></div>
+                <!-- loginDiv을 오른쪽 끝으로 이동 -->
+                <div class="loginDiv">
+                    <div class="hamburger" onclick="toggleLoginMenu()">&#9776;</div>
+                    <!-- 로그인 메뉴 -->
+                    <div class="loginMenu" style="display: none;">
+                        <a id="loginLink" th:href="@{/user/loginPage}">로그인</a>
+                        <a id="logoutLink" th:href="@{/user/logout}" style="display: none;">로그아웃</a>
+                    </div>
                 </div>
             </div>
 

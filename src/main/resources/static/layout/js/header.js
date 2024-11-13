@@ -1,3 +1,8 @@
+function toggleLoginMenu() {
+    const loginMenu = document.querySelector('.loginMenu');
+    loginMenu.style.display = loginMenu.style.display === 'none' || loginMenu.style.display === '' ? 'block' : 'none';
+}
+
 // 전역 변수 선언
 window.userInfo = null;
 
@@ -13,10 +18,6 @@ document.addEventListener("DOMContentLoaded", function() {
             if (userInfoData.userName) {
                 // 사용자 정보를 헤더에 표시
                 const userGreeting = document.createElement("p");
-                userGreeting.innerText = `안녕하세요, ${userInfoData.userName}님!`;
-                userGreeting.className = "user-greeting";
-                document.querySelector(".navBar").appendChild(userGreeting);
-
                 document.getElementById("loginLink").style.display = "none";
                 document.getElementById("logoutLink").style.display = "block";
             } else {

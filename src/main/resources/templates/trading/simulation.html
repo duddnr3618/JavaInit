@@ -3,122 +3,126 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{layout/base}">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" th:href="@{/trading/css/simulation.css}">
-        <script th:src="@{/trading/js/simulation.js}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <title>Simulation</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/trading/css/simulation.css}">
+    <script th:src="@{/trading/js/simulation.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Simulation</title>
+</head>
 
-    <div layout:fragment="content">
+<div layout:fragment="content">
 
-        <form class="submitBox" action="/trading/submit" method="post" onsubmit="InputData()">
-            <div>
-                <button class="submitBtn" type="submit">전쟁시작</button>
-                <button class="submitBtn" type="submit">전쟁종료</button>
-            </div>
-            <table class="tableBox">
-                <input type="hidden" id="userEmail" name="userEmail">
-                <tr>
-                    <th>시드</th>
-                    <td colspan="2">
-                        <input type="text" id="seed" name="seed" oninput="InputData()"
-                               th:value="${getTradingDataDto != null ? getTradingDataDto.seed : ''}">
-                    </td>
+    <form class="submitBox" action="/trading/submit" method="post" onsubmit="InputData()">
+        <div>
+            <button class="submitBtn" type="submit">전쟁시작</button>
+            <button class="submitBtn" type="submit">전쟁종료</button>
+        </div>
+        <table class="tableBox">
+            <input type="hidden" id="userEmail" name="userEmail">
+            <tr>
+                <th>시드</th>
+                <td colspan="2">
+                    <input type="text" id="seed" name="seed" oninput="InputData()"
+                           th:value="${getTradingDataDto != null ? getTradingDataDto.seed : ''}">
+                </td>
 
-                    <td>USDT</td>
-                </tr>
+                <td>USDT</td>
+            </tr>
 
-                <tr>
-                    <th>손실율</th>
-                    <td>
-                        <select class="custom-select" id="lossRatio" name="lossRatio" oninput="InputData ()" onchange="handleCustomInputs()">
-                            <option value="20">20%</option>
-                            <option value="10">10%</option>
-                            <option value="5">5%</option>
-                            <option value="custInputOption">직접입력</option>
-                        </select>
-                        <input type="text" name="custom-input-lossRatio" class="custom-input" style="display: none"
-                               placeholder="손실율 직접 입력" oninput="updateCustomInput('lossRatio', this.value)">
-                    </td>
-                    <th>손익비</th>
-                    <td>
-                        <select class="custom-select" id="profitToLossRatio" name="profitToLossRatio" oninput="InputData ()"  onchange="handleCustomInputs()">
-                            <option value="1.618">1.618</option>
-                            <option value="3.236">3.236</option>
-                            <option value="custInputOption">직접입력</option>
-                        </select>
-                        <input type="text" class="custom-input" name="custom-input-profitToLossRatio" style="display: none"
-                               placeholder="손익비 직접 입력" oninput="updateCustomInput('profitToLossRatio', this.value)">
-                    </td>
-                </tr>
+            <tr>
+                <th>손실율</th>
+                <td>
+                    <select class="custom-select" id="lossRatio" name="lossRatio" oninput="InputData ()"
+                            onchange="handleCustomInputs()">
+                        <option value="20">20%</option>
+                        <option value="10">10%</option>
+                        <option value="5">5%</option>
+                        <option value="custInputOption">직접입력</option>
+                    </select>
+                    <input type="text" name="custom-input-lossRatio" class="custom-input" style="display: none"
+                           placeholder="손실율 직접 입력" oninput="updateCustomInput('lossRatio', this.value)">
+                </td>
+                <th>손익비</th>
+                <td>
+                    <select class="custom-select" id="profitToLossRatio" name="profitToLossRatio" oninput="InputData ()"
+                            onchange="handleCustomInputs()">
+                        <option value="1.618">1.618</option>
+                        <option value="3.236">3.236</option>
+                        <option value="custInputOption">직접입력</option>
+                    </select>
+                    <input type="text" class="custom-input" name="custom-input-profitToLossRatio" style="display: none"
+                           placeholder="손익비 직접 입력" oninput="updateCustomInput('profitToLossRatio', this.value)">
+                </td>
+            </tr>
 
-                <tr>
-                    <th>손절선</th>
-                    <td><input type="text" id="lossLine" name="lossLine" oninput="InputData ()"
-                               th:value="${getTradingDataDto != null ? getTradingDataDto.lossLine : ''}"></td>
-                    <th>익절선</th>
-                    <td id="profitLine">-</td>
-                </tr>
-                <tr>
-                    <th>증거금</th>
-                    <th colspan="3" id="margin" class="tableContent1"></th>
-                    <input type="hidden" id="hiddenMargin" name="margin">
-                </tr>
-                <tr>
-                    <td colspan="4" style="background-color: #8c8b8b"></td>
-                </tr>
-                <tr>
-                    <th >손실금</th>
-                    <td id="lossAmount" th:text="${getTradingDataDto != null ? getTradingDataDto.lossAmount : ''}">-</td>
-                    <input type="hidden" id="hiddenLossAmount" name="lossAmount" >
-                    <th>손실시 시드</th>
-                    <td id="lostSeed" >-</td>
+            <tr>
+                <th>손절선</th>
+                <td><input type="text" id="lossLine" name="lossLine" oninput="InputData ()"
+                           th:value="${getTradingDataDto != null ? getTradingDataDto.lossLine : ''}"></td>
+                <th>익절선</th>
+                <td id="profitLine">-</td>
+            </tr>
+            <tr>
+                <th>증거금</th>
+                <th colspan="3" id="margin" class="tableContent1"></th>
+                <input type="hidden" id="hiddenMargin" name="margin">
+            </tr>
+            <tr>
+                <td colspan="4" style="background-color: #8c8b8b"></td>
+            </tr>
+            <tr>
+                <th>손실금</th>
+                <td id="lossAmount" th:text="${getTradingDataDto != null ? getTradingDataDto.lossAmount : ''}">-</td>
+                <input type="hidden" id="hiddenLossAmount" name="lossAmount">
+                <th>손실시 시드</th>
+                <td id="lostSeed">-</td>
 
-                </tr>
-                <tr>
-                    <th >이익금</th>
-                    <td id="profitAmount" th:text="${getTradingDataDto != null ? getTradingDataDto.profitAmount : ''}">-</td>
-                    <input type="hidden" id="hiddenProfitAmount" name="profitAmount">
-                    <th>수익시 시드</th>
-                    <td id="profitedSeed">-</td>
-                </tr>
-                <tr>
-                    <th >보정 이익</th>
-                    <td id="adjustedProfit">-</td>
-                    <th>보정시 시드</th>
-                    <td id="adjustedProfitSeed">-</td>
-                </tr>
-                <tr>
-                    <th>거래소</th>
-                    <th>
-                        <select class="custom-select" id="Exchange" name="Exchange" oninput="InputData ()">
-                            <option value="비트겟">비트겟</option>
-                            <option value="바이낸스">바이낸스</option>
-                            <option value="OKX">OKX</option>
-                        </select>
-                    </th>
-                    <th>
-                        <label style="display: inline-block; margin-right: 10px;">
-                            <input type="radio" name="TradingState" value="WIN"> 승
-                        </label>
-                        <label style="display: inline-block; margin-right: 10px;">
-                            <input type="radio" name="TradingState" value="LOSS"> 패
-                        </label>
-                        <label style="display: inline-block;">
-                            <input type="radio" name="TradingState" value="DRAW"> 교전
-                        </label>
-                    </th>
+            </tr>
+            <tr>
+                <th>이익금</th>
+                <td id="profitAmount" th:text="${getTradingDataDto != null ? getTradingDataDto.profitAmount : ''}">-
+                </td>
+                <input type="hidden" id="hiddenProfitAmount" name="profitAmount">
+                <th>수익시 시드</th>
+                <td id="profitedSeed">-</td>
+            </tr>
+            <tr>
+                <th>보정 이익</th>
+                <td id="adjustedProfit">-</td>
+                <th>보정시 시드</th>
+                <td id="adjustedProfitSeed">-</td>
+            </tr>
+            <tr>
+                <th>거래소</th>
+                <th>
+                    <select class="custom-select" id="Exchange" name="Exchange" oninput="InputData ()">
+                        <option value="비트겟">비트겟</option>
+                        <option value="바이낸스">바이낸스</option>
+                        <option value="OKX">OKX</option>
+                    </select>
+                </th>
+                <th colspan="2">
+                    <label style="display: inline-block; margin-right: 10px;">
+                        <input type="radio" name="TradingState" value="WIN"> 승
+                    </label>
+                    <label style="display: inline-block; margin-right: 10px;">
+                        <input type="radio" name="TradingState" value="LOSS"> 패
+                    </label>
+                    <label style="display: inline-block;">
+                        <input type="radio" name="TradingState" value="DRAW_PLUS"> 교전(+)
+                    </label>
+                    <label style="display: inline-block;">
+                        <input type="radio" name="TradingState" value="DRAW_MINUS"> 교전(-)
+                    </label>
+                </th>
+            </tr>
+        </table>
 
-                    <td id="winRate">승률</td>
-                </tr>
-            </table>
-
-        </form>
-    </div>
+    </form>
+</div>
 
 </html>

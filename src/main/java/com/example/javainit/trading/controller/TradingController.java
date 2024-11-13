@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -28,7 +29,10 @@ public class TradingController {
         // 로그인 시
         String userEmail = user.getUsername();
         TradingDataDto getTradingDataDto = tradingService.getTradingData(userEmail);
-        model.addAttribute("getTradingDataDto", getTradingDataDto);
+        // RUN 상태만 추가
+        if (getTradingDataDto != null && "RUN".equals(getTradingDataDto.getTradingState())) {
+            model.addAttribute("getTradingDataDto", getTradingDataDto);
+        }
 
         return "trading/simulation";
     }
@@ -37,6 +41,24 @@ public class TradingController {
     public String simulationSubmit(@ModelAttribute TradingDataDto tradingDataDto) {
         tradingService.saveOrUpdate(tradingDataDto);
         return "redirect:/trading/simulation";
+    }
+
+    @GetMapping("/historyPage")
+    public String historyPage(@AuthenticationPrincipal CustomUserDetails user, Model model) {
+        if(user == null){
+            return "redirect:/user/loginPage";
+        }
+        String userEmail = user.getUsername();
+        List<TradingDataDto> tradingDataDtoList = tradingService.getHistoricalData(userEmail);
+        TradingDataDto lastTradingDataDto = null;
+        if (!tradingDataDtoList.isEmpty()) {
+            lastTradingDataDto = tradingDataDtoList.get(tradingDataDtoList.size() - 1);
+        }
+
+        model.addAttribute("data",lastTradingDataDto);
+        model.addAttribute("getHistoryDataDto", tradingDataDtoList);
+        model.addAttribute("results",tradingService.countStates(userEmail));
+        return "trading/history";
     }
 
 

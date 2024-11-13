@@ -18,6 +18,8 @@ public class TradingData {
     // Seed (시드)
     private Double seed;  // 시드 금액
 
+    private Double afterSeed;
+
     // Loss Ratio (손실율)
     private Double lossRatio;
 
@@ -40,15 +42,13 @@ public class TradingData {
     @Column(length = 50)
     private String exchange;
 
-    // Win Rate (승률)
-    private Double winRate;
-
     @Column(name = "user_email")
     private String userEmail;
 
     // DateTime을 String 형태로 저장
     @Column(name = "date_time")
     private String dateTime;
+
 
     // 매매 끝,종료
     @Enumerated(EnumType.STRING)
@@ -67,6 +67,7 @@ public class TradingData {
     public static TradingData toTradingData(TradingDataDto dto) {
         TradingData tradingData = new TradingData();
         tradingData.setSeed(dto.getSeed());
+        tradingData.setAfterSeed(dto.getAfterSeed());
         tradingData.setLossRatio(dto.getLossRatio());
         tradingData.setProfitToLossRatio(dto.getProfitToLossRatio());
         tradingData.setLossLine(dto.getLossLine());
@@ -75,7 +76,6 @@ public class TradingData {
         tradingData.setProfitAmount(dto.getProfitAmount());
         tradingData.setExchange(dto.getExchange());
         tradingData.setUserEmail(dto.getUserEmail());
-        tradingData.setWinRate(dto.getWinRate());
 
         // DTO의 TradingState 값이 없을 때 기본값 RUN으로 설정
         if (dto.getTradingState() != null) {
@@ -89,20 +89,21 @@ public class TradingData {
 
 
     // Entity -> DTO 변환 메소드
-    public TradingDataDto toTradingDataDto(TradingData tradingData) {
+    public static TradingDataDto toTradingDataDto(TradingData tradingData) {
         TradingDataDto tradingDataDto = new TradingDataDto();
-        tradingDataDto.setSeed(this.seed);
-        tradingDataDto.setLossRatio(this.lossRatio);
-        tradingDataDto.setProfitToLossRatio(this.profitToLossRatio);
-        tradingDataDto.setLossLine(this.lossLine);
-        tradingDataDto.setMargin(this.margin);
-        tradingDataDto.setLossAmount(this.lossAmount);
-        tradingDataDto.setProfitAmount(this.profitAmount);
-        tradingDataDto.setExchange(this.exchange);
-        tradingDataDto.setDateTime(this.dateTime); // 이미 포맷된 상태로 DTO에 설정
+        tradingDataDto.setUserEmail(tradingData.userEmail);
+        tradingDataDto.setSeed(tradingData.seed);
+        tradingDataDto.setAfterSeed(tradingData.afterSeed);
+        tradingDataDto.setLossRatio(tradingData.lossRatio);
+        tradingDataDto.setProfitToLossRatio(tradingData.profitToLossRatio);
+        tradingDataDto.setLossLine(tradingData.lossLine);
+        tradingDataDto.setMargin(tradingData.margin);
+        tradingDataDto.setLossAmount(tradingData.lossAmount);
+        tradingDataDto.setProfitAmount(tradingData.profitAmount);
+        tradingDataDto.setExchange(tradingData.exchange);
+        tradingDataDto.setDateTime(tradingData.dateTime); // 이미 포맷된 상태로 DTO에 설정
         // Enum을 문자열로 변환하여 DTO에 설정
-        tradingDataDto.setTradingState(this.tradingState != null ? this.tradingState.name() : null);
-        tradingDataDto.setWinRate(this.winRate);
+        tradingDataDto.setTradingState(tradingData.tradingState != null ? tradingData.tradingState.name() : null);
 
         return tradingDataDto;
     }

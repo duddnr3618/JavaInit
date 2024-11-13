@@ -8,11 +8,39 @@
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" th:href="@{/trading/css/history.css}">
+        <script th:src="@{/trading/js/history.js}"></script>
         <title>History</title>
     </head>
 
     <div layout:fragment="content">
-        본문영역
+
+        <div class="historyDiv" >
+            <div th:text="${data.userEmail + ' HISTORY'}"></div>
+            <div class="tableDiv">
+                <table>
+                    <tr>
+                        <th>현재시드</th>
+                        <td th:text="${data.getAfterSeed()}"></td>
+                        <th>승률</th>
+                        <td th:text="${results['winRate'] + '%'}"></td>
+                    </tr>
+                    <tr>
+                        <th>승리</th>
+                        <td th:text="${results['winCount']}"></td>
+                        <th>패배</th>
+                        <td th:text="${results['lossCount']}"></td>
+                    </tr>
+                    <tr>
+                        <th>수익률</th>
+                        <td>2</td>
+                        <th>이달 수익률</th>
+                        <td>2</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
     </div>
 
 </html>
